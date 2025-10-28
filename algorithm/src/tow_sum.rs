@@ -46,6 +46,7 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let complete = target - item;
         if map.get(&complete).is_some() {
             // 此处为什么要使用 * 解引用？
+            // 此处解引用之后，得到i32类型，而i32实现了copy trait，实际上是复制了一份，不会对map中存储的数据造成影响
             return vec![*map.get(&complete).unwrap(), index as i32];
         }
         map.insert(item, index as i32);
