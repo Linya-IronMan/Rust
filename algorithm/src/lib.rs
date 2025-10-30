@@ -1,4 +1,8 @@
 mod search_simple_number;
+mod tow_sum;
+
+mod palindromic_number;
+
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
