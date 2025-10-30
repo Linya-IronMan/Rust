@@ -24,6 +24,7 @@ fn solution(cards: Vec<i32>) -> i32 {
 
    max_count_number
 }
+
 /// # 找单独的数
 /// 在一个班级中，每位同学都拿到了一张卡片，上面有一个整数。
 /// 有趣的是，除了一个数字之外，所有的数字都恰好出现了两次。
@@ -33,6 +34,7 @@ fn solution(cards: Vec<i32>) -> i32 {
 ///
 /// - 设计一个算法，使其时间复杂度为 O(n)，其中 n 是班级的人数。
 /// - 尽量减少额外空间的使用，以体现你的算法优化能力。
+#[cfg(test)]
 mod search_simple_number {
     use super::*;
 
