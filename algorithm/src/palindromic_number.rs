@@ -26,7 +26,7 @@
 ///
 ///
 /// 进阶：你能不将整数转为字符串来解决这个问题吗？
-fn is_palindrome(num: i32) -> bool {
+pub fn is_palindrome(num: i32) -> bool {
     let str = num.to_string();
     let mut pre = 0;
     let mut last = str.len() - 1;
