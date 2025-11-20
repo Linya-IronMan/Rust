@@ -1,18 +1,32 @@
 pub fn longest_common_prefix(strs: Vec<String>) -> String {
-    if (strs.is_empty()) {
+    if strs.is_empty() {
         return String::from("");
     }
     let mut common = String::from("");
-    let minLen = strs.iter().map(|str| str.len()).min().unwrap();
+    // TODO: 闭包
+    let min_len = strs.iter().map(|str| str.len()).min().unwrap();
     let mut i = 0;
 
-    while (i < minLen) {
-        let cur_char = strs[0].chars().nth(0).unwrap();
+    while i < min_len {
+        // TODO: unwrap 处理
+        if let Some(cur_char) = strs[0].chars().nth(i) {
+            // TODO: 此处会打印完整的 Flow，没有提前结束 while
+            println!("{}", cur_char);
+            let matched = strs
+                .iter()
+                .enumerate()
+                .all(|(_index, str)| str.chars().nth(i).unwrap().eq(&cur_char));
 
+            if matched {
+                common.push(cur_char);
+            }
+        } else {
+            break;
+        }
         i += 1;
     }
 
-    String::from("")
+    common
 }
 
 #[cfg(test)]
