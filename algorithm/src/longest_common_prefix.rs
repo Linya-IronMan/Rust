@@ -64,14 +64,41 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
     common
 }
 
+pub fn longest_common_prefix_v2(strs: Vec<String>) -> String {
+    let s0 = &strs[0];
+    for (j, c) in s0.bytes().enumerate() {
+        // 从左到右
+        for s in &strs {
+            // 从上到下
+            if j == s.len() || s.as_bytes()[j] != c {
+                // 这一列有字母缺失或者不同
+                return s0[..j].to_string(); // 0 到 j-1 是公共前缀
+            }
+        }
+    }
+    s0.clone()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test() {
+    fn test_v1() {
         assert_eq!(
             longest_common_prefix(vec![
+                String::from("flower"),
+                String::from("flow"),
+                String::from("flight")
+            ]),
+            String::from("fl")
+        );
+    }
+
+    #[test]
+    fn test_v2() {
+        assert_eq!(
+            longest_common_prefix_v2(vec![
                 String::from("flower"),
                 String::from("flow"),
                 String::from("flight")
