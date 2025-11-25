@@ -10,18 +10,15 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
     while i < min_len {
         // TODO: unwrap 处理
         if let Some(cur_char) = strs[0].chars().nth(i) {
-            // TODO: 此处会打印完整的 Flow，没有提前结束 while
-            println!("{}", cur_char);
             let matched = strs
                 .iter()
                 .enumerate()
                 .all(|(_index, str)| str.chars().nth(i).unwrap().eq(&cur_char));
 
-            if matched {
-                common.push(cur_char);
-            } else {
+            if !matched {
                 break;
             }
+            common.push(cur_char)
         } else {
             break;
         }
