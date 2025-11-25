@@ -70,6 +70,7 @@ pub fn longest_common_prefix_v2(strs: Vec<String>) -> String {
         // 从左到右
         for s in &strs {
             // 从上到下
+            // as_bytes 只能用于ASCII字符，不能用于Unicode字符，中文就不可以了了
             if j == s.len() || s.as_bytes()[j] != c {
                 // 这一列有字母缺失或者不同
                 return s0[..j].to_string(); // 0 到 j-1 是公共前缀
