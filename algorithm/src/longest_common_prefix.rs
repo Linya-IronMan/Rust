@@ -19,6 +19,8 @@ pub fn longest_common_prefix(strs: Vec<String>) -> String {
 
             if matched {
                 common.push(cur_char);
+            } else {
+                break;
             }
         } else {
             break;
