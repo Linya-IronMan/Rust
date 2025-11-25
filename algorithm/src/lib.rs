@@ -3,6 +3,7 @@ mod palindromic_number;
 mod roman_to_int;
 mod search_simple_number;
 mod tow_sum;
+mod is_valid_bracket;
 
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
