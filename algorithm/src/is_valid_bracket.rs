@@ -17,19 +17,19 @@ use std::collections::HashMap;
 /// # 示例
 /// ```
 /// use algorithm::is_valid_bracket::is_valid_bracket;
-/// 
+///
 /// // 示例 1
 /// assert_eq!(is_valid_bracket("()"), true);
-/// 
+///
 /// // 示例 2
 /// assert_eq!(is_valid_bracket("()[]{}"), true);
-/// 
+///
 /// // 示例 3
 /// assert_eq!(is_valid_bracket("(]"), false);
-/// 
+///
 /// // 示例 4
 /// assert_eq!(is_valid_bracket("([])"), true);
-/// 
+///
 /// // 示例 5
 /// assert_eq!(is_valid_bracket("([)]"), false);
 /// ```
@@ -46,14 +46,15 @@ pub fn is_valid_bracket(value: &str) -> bool {
             stack.push(c)
         } else {
             let last = stack.last().unwrap();
-            if let Some(cc) = dic.get(&c) {
-                if cc.eq(last) {
+            match dic.get(&c) {
+                Some(cc) if cc.eq(&last) => {
                     stack.pop();
-                } else {
-                    stack.push(c)
+                    ()
                 }
-            } else {
-                stack.push(c)
+                _ => {
+                    stack.push(c);
+                    ()
+                }
             }
         }
         // println!("{:?}", stack)
