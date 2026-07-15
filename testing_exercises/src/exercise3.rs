@@ -36,9 +36,12 @@ mod tests {
     //
     // 请修复这个测试，使其在得到 Err 时判断测试成功通过，且**不使用** `#[should_panic]`。
     #[test]
-    #[should_panic]
     fn test_parse_invalid() -> Result<(), String> {
-        let _ = parse_percentage("invalid_number")?;
-        Ok(())
+        // let _ = parse_percentage("invalid_number")?;
+        // Ok(())
+        match parse_percentage("invalid_number") {
+            Ok(_) => Err("Expected an error".to_string()),
+            Err(_) => Ok(()),
+        }
     }
 }

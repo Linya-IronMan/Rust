@@ -24,15 +24,15 @@ const TEMP_FILE: &str = "temp_shared_state.txt";
 fn write_and_verify(data: &str) {
     // 写入共享的物理文件
     fs::write(TEMP_FILE, data).expect("无法写入测试文件");
-    
+
     // 故意加上小幅睡眠延迟，以显著提高并发运行下 test_writer_a 和 test_writer_b 发生冲突的概率
     thread::sleep(Duration::from_millis(50));
-    
+
     let content = fs::read_to_string(TEMP_FILE).expect("无法读取测试文件");
-    
+
     // 断言读取出来的数据必须等于刚刚写入的数据
     assert_eq!(content, data, "测试冲突！读取到的数据与写入不一致。");
-    
+
     // 清除临时文件
     let _ = fs::remove_file(TEMP_FILE);
 }
@@ -52,11 +52,11 @@ fn test_writer_b() {
 #[ignore]
 fn test_expensive_simulation() {
     println!("这行输出只有在使用了 --show-output 或者特定运行时才能在通过时看到");
-    
+
     let x = 10;
     let y = 20;
     let sum = x + y;
-    
+
     // TODO: 这是一个故意的错误，请在通过命令行参数拉起此测试后将其修改正确，使测试通过。
-    assert_eq!(sum, 999, "求和计算不正确！");
+    assert_eq!(sum, 30, "求和计算不正确！");
 }
