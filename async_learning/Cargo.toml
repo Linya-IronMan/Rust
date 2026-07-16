@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "mini_executor",
+    "tokio_chat",
+    "exercises",
+]
