@@ -7,7 +7,7 @@
 ## 1. 为什么是 Tokio？
 
 Rust 语言对异步的支持具有独特的“分离式”设计：
-* **标准库 (`std`)**：只提供了最核心的 `async/await` 语法支持、`Future` 接口定义，但**不提供底层的异步执行引擎**。
+* **标准库 (`std`)**：只提供了最核心的 `async/await` 语法支持、`Future` 接口定义，但**不提供底层的异步执行引擎**。 %% async/await 语法训练 %%
 * **运行时 (`Runtime`)**：必须借助第三方库来完成多路复用网络 I/O、任务调度和计时器的驱动。
 
 **Tokio** 是目前 Rust 社区事实上的异步标准库。它基于 **工作窃取 (Work-stealing)** 调度算法，能把千万个轻量级协程 (Task) 高效地分发在多核 CPU 线程上并行执行，从而用极低的资源消耗换取高并发吞吐量。
@@ -102,6 +102,8 @@ tokio::spawn(async move {
 | **`oneshot`** | **单生产者，单消费者，且只能发一次**<br>(Single-producer, Single-consumer, One-shot) | 发送单次触发信号，或者异步等待某一个耗时操作返回单次结果。 |
 | **`broadcast`**| **多生产者，多消费者 (订阅广播模式)**<br>(Multi-producer, Multi-consumer, Broadcast) | **多人聊天室的核心**。中央调度器广播消息，所有的在线用户协程都能抄送收到。 |
 | **`watch`** | **单生产者，多消费者 (最新状态订阅)**<br>(Single-producer, Multi-consumer, State watch) | 配置文件重新加载、服务配置项动态分发。接收端只关心最新值，会丢失旧历史。 |
+
+%% 这几种通道类型的使用场景 %%
 
 ### `broadcast` 通道示例（聊天室场景）
 ```rust
